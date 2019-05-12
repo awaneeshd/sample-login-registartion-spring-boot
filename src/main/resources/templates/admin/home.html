@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="container">
+    <div style="float:right"><a th:href="@{/logout}">Sign out</a></div>
+    <br/>
+    <h5>Hi <span th:utext="${userName}"></span>, this is the user dashboard.</h5>
+    <br/>
+    <h2>Session Details:</h2>
+    <table>
+        <tr>
+            <td> Email:</td>
+            <td><td th:text="${email}"></td></td>
+        </tr>
+        <tr>
+            <td> First name:</td>
+            <td><td th:text="${firstname}"></td></td>
+        </tr>
+        <tr>
+            <td> Last name:</td>
+            <td><td th:text="${lastname}"></td></td>
+        </tr>
+        <tr>
+            <td> Role:</td>
+            <td><td th:text="${role}"></td></td>
+        </tr>
+    </table>
+    <br/>
+
+    <div th:if="${not #lists.isEmpty(userList)}">
+        <h2>User List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Username/ Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Role</th>
+            </tr>
+            <tr th:each="user : ${userList}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.firstname}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.roles}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
